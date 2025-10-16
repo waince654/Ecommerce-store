@@ -90,6 +90,14 @@ const Navbar = () => {
               0
             </span>
           </Link>
+          <div className="hidden md:block">
+            <SignedOut>
+              <SignInButton className="bg-red-500 text-white px-3 py-1 rounded-md cursor-pointer" />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+          </div>
         </nav>
       </div>
     </div>
