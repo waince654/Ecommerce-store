@@ -1,18 +1,52 @@
-import React from "react";
+'use client';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import About from "./pages/About";
-
 import Products from "./pages/Products";
 import Cart from "./pages/Cart";
-
 import Contact from "./pages/Contact";
-import Home from "./pages/home";
+import Home from "./pages/Home";  
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const App = () => {
+  const [location, setLocation] = useState(null);
+
+  const getLocation = async () => {
+    if (!navigator.geolocation) {
+      console.log("Geolocation not supported");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      async (pos) => {
+        const { latitude, longitude } = pos.coords;
+        console.log("Latitude:", latitude, "Longitude:", longitude);
+
+        const url = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`;
+
+        try {
+          const res = await axios.get(url);
+          const exactLocation = res.data.address;
+          console.log(exactLocation);
+          setLocation(exactLocation);
+        } catch (error) {
+          console.log(error);
+        }
+      },
+      (err) => {
+        console.log("Location error:", err.message);
+      }
+    );
+  };
+
+  useEffect(() => {
+    getLocation();
+  }, []);
+
   return (
     <BrowserRouter>
-      <Navbar />
+      <Navbar location={location} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
