@@ -14,8 +14,8 @@ import { Link, NavLink } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
 
-const Navbar = ({location}) => {
-  const [dropdown , setDropdown] = useState(false);
+const Navbar = ({location , getLocation , dropdown , setDropdown  }) => {
+
   const toogleDropdown = ()=>{
     setDropdown(!dropdown)
   }
@@ -46,6 +46,7 @@ const Navbar = ({location}) => {
           <h1 className="font-semibold mb-4 text-xl flex justify-between">
             Change Location <span onClick={toogleDropdown}> <CgClose/> 
             </span></h1>
+            <button onClick={getLocation}  className="bg-blue-700 text-white px-3 py-1 rounded-md cursor-pointer hover:bg-blue-600">Detect my Location</button>
           </div> : null
             }
         </div>

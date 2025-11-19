@@ -11,6 +11,7 @@ import axios from "axios";
 
 const App = () => {
   const [location, setLocation] = useState(null);
+    const [dropdown , setDropdown] = useState(false);
 
   const getLocation = async () => {
     if (!navigator.geolocation) {
@@ -30,6 +31,7 @@ const App = () => {
           const exactLocation = res.data.address;
           console.log(exactLocation);
           setLocation(exactLocation);
+          setDropdown(false)
         } catch (error) {
           console.log(error);
         }
@@ -46,7 +48,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Navbar location={location} />
+      <Navbar location={location} getLocation={getLocation} dropdown={dropdown} setDropdown={setDropdown} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
