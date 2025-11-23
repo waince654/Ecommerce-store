@@ -15,14 +15,14 @@ const App = () => {
 
   const getLocation = async () => {
     if (!navigator.geolocation) {
-      console.log("Geolocation not supported");
+      // console.log("Geolocation not supported");
       return;
     }
 
     navigator.geolocation.getCurrentPosition(
       async (pos) => {
         const { latitude, longitude } = pos.coords;
-        console.log("Latitude:", latitude, "Longitude:", longitude);
+        // console.log("Latitude:", latitude, "Longitude:", longitude);
 
         const url = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`;
 
@@ -36,9 +36,9 @@ const App = () => {
           console.log(error);
         }
       },
-      (err) => {
-        console.log("Location error:", err.message);
-      }
+      // (err) => {
+      //   console.log("Location error:", err.message);
+      // }
     );
   };
 
