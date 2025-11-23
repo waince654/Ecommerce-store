@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Footer from "./components/Footer";
+import { CartProvider } from "./context/CartContext";
 
 const App = () => {
   const [location, setLocation] = useState(null);
@@ -48,6 +49,7 @@ const App = () => {
   }, []);
 
   return (
+    <CartProvider>
     <BrowserRouter>
       <Navbar location={location} getLocation={getLocation} dropdown={dropdown} setDropdown={setDropdown} />
       <Routes>
@@ -59,6 +61,7 @@ const App = () => {
       </Routes>
       <Footer/>
     </BrowserRouter>
+    </CartProvider>
   );
 };
 
