@@ -15,7 +15,7 @@ import CategoryProduct from './pages/CategoryProduct'
 
 const App = () => {
   const [location, setLocation] = useState(null);
-  const [dropdown, setDropdown] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(false);
 
   const getLocation = async () => {
     if (!navigator.geolocation) {
@@ -33,9 +33,9 @@ const App = () => {
         try {
           const res = await axios.get(url);
           const exactLocation = res.data.address;
-          console.log(exactLocation);
+          // console.log(exactLocation);
           setLocation(exactLocation);
-          setDropdown(false);
+          setOpenDropdown(false);
         } catch (error) {
           console.log(error);
         }
@@ -56,8 +56,8 @@ const App = () => {
         <Navbar
           location={location}
           getLocation={getLocation}
-          dropdown={dropdown}
-          setDropdown={setDropdown}
+          openDropdown={openDropdown}
+          setOpenDropdown={setOpenDropdown}
         />
         <Routes>
           <Route path="/" element={<Home />} />

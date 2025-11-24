@@ -8,7 +8,7 @@ import Category from './Category';
 
 const Carousel = () => {
     const { data, fetchAllProducts } = useContext(DataContext)
-    console.log(data);
+    // console.log(data);
 
     useEffect(() => {
         fetchAllProducts()
