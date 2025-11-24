@@ -7,8 +7,8 @@ import { DataProvider } from "./context/DataContext.jsx";
 import { Bounce } from "react-toastify";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ScrollToTop from 'react-scroll-to-top'
-
+import ScrollToTop from "react-scroll-to-top";
+import { CartProvider } from "./context/CartContext.jsx";
 
 // Import your Publishable Key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -20,23 +20,34 @@ if (!PUBLISHABLE_KEY) {
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <DataProvider>
-      <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
-        <App />
-            <ScrollToTop color='white' smooth style={{backgroundColor:'#fa2d37', display:'flex', alignItems:'center', justifyContent:'center'}}/>
-        <ToastContainer
-          position="bottom-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick={false}
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-          transition={Bounce}
-        />
-      </ClerkProvider>
+      <CartProvider>
+        <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+          <App />
+          <ScrollToTop
+            color="white"
+            smooth
+            style={{
+              backgroundColor: "#fa2d37",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          />
+          <ToastContainer
+            position="bottom-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick={false}
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            transition={Bounce}
+          />
+        </ClerkProvider>
+      </CartProvider>
     </DataProvider>
   </StrictMode>
 );
