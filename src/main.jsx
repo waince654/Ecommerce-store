@@ -7,6 +7,7 @@ import { DataProvider } from "./context/DataContext.jsx";
 import { Bounce } from "react-toastify";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ScrollToTop from 'react-scroll-to-top'
 
 
 // Import your Publishable Key
@@ -21,6 +22,7 @@ createRoot(document.getElementById("root")).render(
     <DataProvider>
       <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
         <App />
+            <ScrollToTop color='white' smooth style={{backgroundColor:'#fa2d37', display:'flex', alignItems:'center', justifyContent:'center'}}/>
         <ToastContainer
           position="bottom-right"
           autoClose={5000}
