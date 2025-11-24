@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import About from "./pages/About";
 import Products from "./pages/Products";
-import SingleProduct from "./components/SingleProduct";
+import SingleProduct from "./pages/SingleProduct";
 import Cart from "./pages/Cart";
 import Contact from "./pages/Contact";
 import Home from "./pages/Home";
@@ -11,6 +11,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Footer from "./components/Footer";
 import { CartProvider } from "./context/CartContext";
+import CategoryProduct from './pages/CategoryProduct'
 
 const App = () => {
   const [location, setLocation] = useState(null);
@@ -64,6 +65,7 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<SingleProduct />}></Route>
+             <Route path='/category/:category' element={<CategoryProduct />}></Route>
           <Route path="/cart" element={<Cart />} />
         </Routes>
         <Footer />
